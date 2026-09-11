@@ -1,0 +1,402 @@
+/* ============================
+   Region Panel — Slides in from right
+   ============================ */
+.region-panel-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(520px, 85vw);
+  z-index: 20;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.region-panel-wrapper.open {
+  pointer-events: auto;
+}
+
+/* Backdrop blur behind panel */
+.region-panel-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 16, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.region-panel-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Panel container */
+.region-panel {
+  flex: 1;
+  background: rgba(8, 8, 20, 0.92);
+  border-left: 1px solid var(--border);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow-y: auto;
+  padding: 80px 36px 40px;
+  transform: translateX(100%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.region-panel-wrapper.open .region-panel {
+  transform: translateX(0);
+}
+
+/* ─── Panel Header ─── */
+.panel-header {
+  margin-bottom: 40px;
+}
+
+.panel-region-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  border: 1px solid;
+}
+
+.panel-region-tag[data-region="build"] {
+  color: var(--accent-cyan);
+  border-color: rgba(6, 182, 212, 0.3);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.panel-region-tag[data-region="learn"] {
+  color: var(--accent-purple);
+  border-color: rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.panel-region-tag[data-region="lead"] {
+  color: var(--accent-amber);
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.panel-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.panel-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ─── Panel Section ─── */
+.panel-section {
+  margin-bottom: 36px;
+}
+
+.panel-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── Cards inside panels ─── */
+.panel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 12px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.panel-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.panel-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.panel-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ─── Tags ─── */
+.panel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.panel-tag {
+  padding: 4px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-family: var(--font-mono);
+  transition: all var(--transition);
+}
+
+.panel-tag:hover {
+  border-color: var(--accent-border);
+  color: var(--accent-cyan);
+}
+
+/* ─── Feature list ─── */
+.panel-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.panel-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.panel-feature svg {
+  flex-shrink: 0;
+  color: var(--accent-cyan);
+}
+
+/* ─── Buttons ─── */
+.panel-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.panel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+  text-decoration: none;
+}
+
+.panel-btn-primary {
+  background: var(--accent-cyan);
+  color: #050510;
+}
+
+.panel-btn-primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  transform: translateY(-1px);
+}
+
+.panel-btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.panel-btn-secondary:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+/* ─── Skills Grid ─── */
+.panel-skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.panel-skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  transition: all var(--transition);
+}
+
+.panel-skill-card:hover {
+  border-color: var(--border-hover);
+}
+
+.panel-skill-card h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-skill-icon {
+  color: var(--accent-cyan);
+}
+
+/* ─── Stats row ─── */
+.panel-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.panel-stat {
+  text-align: center;
+  flex: 1;
+  min-width: 80px;
+  padding: 16px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.panel-stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.panel-stat-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* ─── Education ─── */
+.panel-education {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.panel-edu-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-purple);
+}
+
+.panel-edu-info h3 {
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.panel-edu-degree {
+  font-size: 0.85rem;
+  color: var(--accent-purple);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.panel-edu-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.panel-edu-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.panel-edu-meta-item svg {
+  color: var(--accent-purple);
+  flex-shrink: 0;
+}
+
+/* ─── About text ─── */
+.panel-about-text p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+/* ─── Achievement ─── */
+.panel-achievement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ============================
+   Responsive — Panels
+   ============================ */
+@media (max-width: 768px) {
+  .region-panel-wrapper {
+    width: 100vw;
+  }
+
+  .region-panel {
+    padding: 70px 20px 32px;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .panel-skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-stats {
+    gap: 10px;
+  }
+
+  .panel-education {
+    flex-direction: column;
+  }
+}

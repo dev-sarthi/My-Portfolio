@@ -1,0 +1,274 @@
+/* ============================
+   HUD Overlay
+   ============================ */
+.hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hud > * {
+  pointer-events: auto;
+}
+
+/* ─── Top Bar ─── */
+.hud-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+}
+
+.hud-logo {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  opacity: 0.8;
+  transition: opacity var(--transition);
+  cursor: default;
+  user-select: none;
+}
+
+.hud-logo:hover {
+  opacity: 1;
+}
+
+.hud-logo .accent {
+  background: var(--gradient-neural);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hud-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.hud-nav-btn {
+  padding: 8px 16px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hud-nav-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-border);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.hud-nav-btn.active {
+  color: var(--accent-cyan);
+  border-color: var(--accent-border);
+  background: rgba(6, 182, 212, 0.1);
+}
+
+/* ─── Back Button ─── */
+.hud-back {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hud-back:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+/* ─── Center Intro (shown when no region is active) ─── */
+.hud-intro {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hud-intro.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  pointer-events: none;
+}
+
+.hud-intro-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.hud-intro-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.hud-intro-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  animation: fadeInPulse 3s ease-in-out infinite;
+}
+
+@keyframes fadeInPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* ─── Contact Bar ─── */
+.hud-contact {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+  display: flex;
+  gap: 12px;
+}
+
+.hud-contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: all var(--transition);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hud-contact-link:hover {
+  color: var(--accent-cyan);
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ─── Region indicator ─── */
+.hud-region-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease;
+}
+
+.hud-region-indicator.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hud-region-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hud-region-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ============================
+   Responsive — HUD
+   ============================ */
+@media (max-width: 768px) {
+  .hud-top {
+    padding: 16px 20px;
+  }
+
+  .hud-nav {
+    gap: 2px;
+  }
+
+  .hud-nav-btn {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+  }
+
+  .hud-back {
+    top: 16px;
+    left: 20px;
+    padding: 6px 14px;
+    font-size: 0.7rem;
+  }
+
+  .hud-intro {
+    bottom: 22%;
+    width: 90%;
+  }
+
+  .hud-contact {
+    bottom: 16px;
+    right: 20px;
+  }
+
+  .hud-contact-link {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hud-region-indicator {
+    bottom: 20px;
+    left: 20px;
+  }
+}

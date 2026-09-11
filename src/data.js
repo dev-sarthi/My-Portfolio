@@ -1,5 +1,6 @@
 /**
- * Portfolio data — sourced exclusively from resume.
+ * Portfolio data — structured for "Inside My Brain" 3D experience.
+ * Content mapped to three conceptual regions: BUILD, LEARN, LEAD.
  */
 
 export const personalInfo = {
@@ -17,33 +18,7 @@ export const personalInfo = {
   ],
 };
 
-export const skills = [
-  {
-    category: 'Languages',
-    icon: 'Code2',
-    items: ['C++', 'JavaScript', 'Python'],
-  },
-  {
-    category: 'Frontend',
-    icon: 'Layout',
-    items: ['React', 'Next.js'],
-  },
-  {
-    category: 'Backend',
-    icon: 'Server',
-    items: ['Node.js', 'Express', 'FastAPI'],
-  },
-  {
-    category: 'Databases & BaaS',
-    icon: 'Database',
-    items: ['MongoDB', 'Firebase', 'Supabase'],
-  },
-  {
-    category: 'DevOps & Tools',
-    icon: 'GitBranch',
-    items: ['Git', 'GitHub', 'Vercel'],
-  },
-];
+// ─── BUILD region: "What I Create" ───────────────────────────────────
 
 export const projects = [
   {
@@ -73,26 +48,33 @@ export const projects = [
   },
 ];
 
-export const achievements = [
+export const skills = [
   {
-    title: 'USAII Global AI Hackathon 2026',
-    subtitle: 'Finalist',
-    description:
-      'Competed in the USAII Global AI Hackathon and achieved a top ranking among 424 participating teams worldwide.',
-    stats: [
-      { value: '#43', label: 'Global Rank' },
-      { value: '424', label: 'Total Teams' },
-      { value: '91/100', label: 'Score' },
-    ],
+    category: 'Languages',
+    icon: 'Code2',
+    items: ['C++', 'JavaScript', 'Python'],
+  },
+  {
+    category: 'Frontend',
+    icon: 'Layout',
+    items: ['React', 'Next.js'],
+  },
+  {
+    category: 'Backend',
+    icon: 'Server',
+    items: ['Node.js', 'Express', 'FastAPI'],
+  },
+  {
+    category: 'Databases & BaaS',
+    icon: 'Database',
+    items: ['MongoDB', 'Firebase', 'Supabase'],
+  },
+  {
+    category: 'DevOps & Tools',
+    icon: 'GitBranch',
+    items: ['Git', 'GitHub', 'Vercel'],
   },
 ];
-
-export const education = {
-  degree: 'B.Tech in Computer Science & Engineering (AI/ML)',
-  institution: 'University',
-  duration: '2025 – 2029',
-  cgpa: '7.55',
-};
 
 export const workWith = [
   { name: 'React', icon: '⚛️' },
@@ -112,10 +94,59 @@ export const workWith = [
   { name: 'VS Code', icon: '💠' },
 ];
 
-export const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Achievements', href: '#achievements' },
-  { label: 'Contact', href: '#contact' },
+// ─── LEARN region: "How I Grow" ──────────────────────────────────────
+
+export const education = {
+  degree: 'B.Tech in Computer Science & Engineering (AI/ML)',
+  institution: 'University',
+  duration: '2025 – 2029',
+  cgpa: '7.55',
+};
+
+// ─── LEAD region: "Where I Stand Out" ────────────────────────────────
+
+export const achievements = [
+  {
+    title: 'USAII Global AI Hackathon 2026',
+    subtitle: 'Finalist',
+    description:
+      'Competed in the USAII Global AI Hackathon and achieved a top ranking among 424 participating teams worldwide.',
+    stats: [
+      { value: '#43', label: 'Global Rank' },
+      { value: '424', label: 'Total Teams' },
+      { value: '91/100', label: 'Score' },
+    ],
+  },
+];
+
+// ─── Region definitions for 3D scene ─────────────────────────────────
+
+export const regions = [
+  {
+    id: 'build',
+    label: 'BUILD',
+    subtitle: 'What I Create',
+    description: 'Projects, skills, and technologies I work with.',
+    color: '#06b6d4',       // cyan
+    emissive: '#0891b2',
+    position: [-3.5, 0.5, 0],
+  },
+  {
+    id: 'learn',
+    label: 'LEARN',
+    subtitle: 'How I Grow',
+    description: 'Education, courses, and continuous learning.',
+    color: '#8b5cf6',       // purple
+    emissive: '#7c3aed',
+    position: [0, 2.5, -1],
+  },
+  {
+    id: 'lead',
+    label: 'LEAD',
+    subtitle: 'Where I Stand Out',
+    description: 'Achievements, hackathons, and recognition.',
+    color: '#f59e0b',       // amber
+    emissive: '#d97706',
+    position: [3.5, 0.5, 0],
+  },
 ];
